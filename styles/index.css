@@ -63,3 +63,46 @@ body {
     color: #FFF;
     background-color: #000;
 }
+
+#chat-area {
+    display: none;
+    height: 100%;
+    width: 100%;
+    background-color: red;
+}
+
+#chat-area #users-area {
+    height: 100%;
+    width: 20%;
+    border-top: 1px solid transparent;
+    border-right: 1px solid #000;
+    float: left;
+}
+
+#chat-area #users-area #online-user-text {
+    margin: 0;
+    padding: 0;
+    margin-top: 100px;
+    text-align: center;
+}
+
+#chat-area #users-area #online-user-text h1 {
+    margin: 0;
+    padding: 0;
+}
+
+#chat-area #users-area #online-users {
+    margin-top: 50px;
+}
+
+#chat-area #users-area #online-users users {
+    padding: 0;
+    margin: 0;
+    text-align: center
+}
+
+#chat-area #users-area #online-users users li {
+    list-style-type: none;
+    font-weight: bold;
+    margin-top: 10px;
+}
