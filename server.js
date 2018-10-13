@@ -1,3 +1,8 @@
+/**
+ * Author: thescad
+ * Created: 11 Oct 2018
+ */
+
 var express = require("express");
 var http = require("http");
 
@@ -11,6 +16,10 @@ server.listen(3333, function() {
 
 app.get("/", function(req, res) {
     res.sendFile(__dirname + "/index.html");
+});
+
+app.get("/styles/index.css", function(req, res) {
+    res.sendFile(__dirname + "/styles/index.css");
 });
 
 io.on("connection", function(socket) {
