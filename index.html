@@ -71,7 +71,20 @@
             $("#login-area").hide();
             $("#chat-area").show();
 
+            $("#message").html("");
+
             socket.emit("has connected", $username);
+        }
+    });
+
+    $("#message-form").submit(function(event) {
+        event.preventDefault();
+
+        if ($("#message").val() == "" || $("#message").val() == " ") {
+            alert("You can't send empty messages!");
+        } else {
+            socket.emit("new message", {username: $username, message: $("#message").val()});
+            $("#message").val("");
         }
     });
 
@@ -85,6 +98,10 @@
         $("#users").html("");
         updateUser(data.usersList);
         $("#messages").append("<li><i><b>" + data.username + "</b> has disconnected</i></li>");
+    });
+
+    socket.on("new message", function(data) {
+        $("#messages").append("<li><b>" + data.username + "</b>: " + data.message + "</li>");
     });
 </script>
 </html>
