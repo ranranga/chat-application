@@ -161,16 +161,13 @@ body {
 }
 
 #chat-area #message-area #message-form-area #message-form #message-submit {
-    height: 70px;
-    width: 90px;
     background-color: transparent;
     border: 1px solid transparent;
-    font-size: 26px;
     cursor: pointer;
 }
 
 #chat-area #message-area #message-form-area #message-form #message-submit:hover {
-    color: #FFF;
-    background-color: #000;
+    color: #000;
+    
 }
 
