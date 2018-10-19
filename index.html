@@ -36,19 +36,12 @@
                 <h1>Online Users:</h1>
             </div>
             <div id="online-users">
-                <ul id="users">
-                    <li>thescad</li>
-                </ul>
+                <ul id="users"></ul>
             </div>
         </div>
         <div id="message-area">
             <div id="display-message-area">
-                <ul id="messages">
-                    <li>testing</li>
-                    <li>testing</li>
-                    <li>testing</li>
-                    <li>testing</li>
-                </ul>
+                <ul id="messages"></ul>
             </div>
             <div id="message-form-area">
                 <form id="message-form">
@@ -61,14 +54,37 @@
 </body>
 <script type="text/javascript">
     var socket = io();
+
+    function updateUser(list) {
+        for(var i = 0; i < list.length; i++) {
+            $("#users").append("<li><b>"+ list[i] + "</b></li>");
+        }
+    }
+
     $("#login-form").submit(function(event) {
         event.preventDefault();
         if($("#username").val() == "" || $("#username").val() == " ") {
             alert("Invalid username");
         } else {
+            $username = $("#username").val()
+
             $("#login-area").hide();
             $("#chat-area").show();
+
+            socket.emit("has connected", $username);
         }
+    });
+
+    socket.on("has connected", function(data) {
+        $("#users").html("");
+        updateUser(data.usersList);
+        $("#messages").append("<li><i><b>" + data.username + "</b> has connected</i></li>");
+    });
+
+    socket.on("has disconnected", function(data) {
+        $("#users").html("");
+        updateUser(data.usersList);
+        $("#messages").append("<li><i><b>" + data.username + "</b> has disconnected</i></li>");
     });
 </script>
 </html>
